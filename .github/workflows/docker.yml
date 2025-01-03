@@ -113,3 +113,13 @@ jobs:
         run: |
           curl -OL https://raw.githubusercontent.com/roc-lang/examples/refs/heads/main/examples/HelloWorld/main.roc
           docker compose -f docker/nightly-debian-buster/docker-compose.yml run roc main.roc
+
+  devcontainer:
+    name: roc-devcontainer
+    runs-on: [ubuntu-22.04]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build -t roc-devcontainer docker/devcontainer
